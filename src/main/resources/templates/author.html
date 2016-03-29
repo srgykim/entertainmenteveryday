@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Entertainment Everyday | Admin</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" th:href="@{/layout.css}"/>
+    <script type="text/javascript" th:src="@{/script.js}"></script>
+    <script th:src="@{/tinymce/tinymce.min.js}"></script>
+    <script>
+        tinymce.init({
+            selector: "textarea#content",
+            theme: "modern",
+            width: "100%",
+            height: 300,
+            fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
+            plugins: [
+                "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                "save table contextmenu directionality emoticons template paste textcolor"
+            ],
+            content_css: "css/content.css",
+            toolbar: "insertfile undo redo | " +
+            "styleselect | sizeselect | fontsizeselect | bold italic | alignleft aligncenter alignright alignjustify | " +
+            "bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
+            style_formats: [
+                {title: 'Bold text', inline: 'b'},
+                {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+                {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+                {title: 'Example 1', inline: 'span', classes: 'example1'},
+                {title: 'Example 2', inline: 'span', classes: 'example2'},
+                {title: 'Table styles'},
+                {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+            ]
+        });
+    </script>
+</head>
+<body>
+<div id="container">
+    <div id="header">
+        <p><a th:href="@{/}" class="title">
+            <span class="header_text">Entertainment Everyday</span>
+        </a></p><br/>
+    </div>
+    <div id="admincontent">
+        <br/><br/><h1 align="center">Add New Article</h1><br/><br/>
+        <div align="right">
+            <b>Author ID: </b><span th:text="${author.authorId}" style="color:green;"/><br/><br/>
+            <form th:action="@{/logout}" method="post">
+                <span th:text="${author.firstName}+' '+${author.middleName}+' '+${author.lastName}"/>
+                <input type="submit" value="Sign out"/>
+            </form>
+        </div><br/><br/>
+        <form name="publicationForm" th:action="@{/author}" id="addarticle"
+              onsubmit="return validatePublicationForm();" th:object="${article}" method="post">
+            Publication date:<br/>
+            <input type="date" id="date" style="width:250px;height:30px;font-size:12pt" th:field="*{publicationDate}"/><br/>
+            <p id="nullDate"></p><br/>
+            Category:<br/>
+            <select name="category" th:field="*{categoryId}" style="width:250px;height:50px;font-size:12pt;">
+                <option value="2">TV &amp; Movies: TV Shows</option>
+                <option value="3">TV &amp; Movies: Movies</option>
+                <option value="5">Food &amp; Drinks: Food</option>
+                <option value="6">Food &amp; Drinks: Drinks</option>
+                <option value="7">Food &amp; Drinks: Health</option>
+                <option value="8">Food &amp; Drinks: Quick Recipes</option>
+                <option value="10">Video &amp; Gaming: Viral Videos</option>
+                <option value="11">Video &amp; Gaming: Gaming</option>
+                <option value="13">Books: Best Sellers</option>
+                <option value="14">Books: Top</option>
+            </select><br/><br/>
+            Title:<br/>
+            <input type="text" name="title" style="width:100%;font-size:12pt;" th:field="*{title}"/><br/>
+            <p id="nullTitle"></p><br/>
+            Short title:<br/>
+            <input type="text" name="shortTitledId" style="width:100%;font-size:12pt;" th:field="*{shortTitledId}"/><br/>
+            <p id="nullShortTitle"></p><br/>
+            Extract:<br/>
+            <textarea name="articleExtract" id="extract" maxlength="512" th:field="*{articleExtract}"
+                      style="width:100%;height:100px;resize:none;font-size:12pt;"></textarea>
+            <p id="nullExtract"></p><br/>
+            Content:<br />
+            <textarea id="content" form="addarticle" name="articleContent" th:field="*{articleContent}"></textarea><br/>
+            <p id="nullContent"></p><br/>
+            <div align="center">
+                <input type="submit" value="PUBLISH" style="width:200px;height:40px;font-size:12pt;font-weight:bold;"/>
+            </div>
+        </form><br /><br />
+    </div>
+    <div id="footer">Sergey Kim, CSSE-135R</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Entertainment Everyday | Main</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" th:href="@{/layout.css}"/>
+    <script type="text/javascript" th:src="@{/script.js}"></script>
+</head>
+<body>
+<div id="container">
+    <div id="header">
+        <p><a th:href="@{/}" class="title">
+            <span class="header_text">Entertainment Everyday</span>
+        </a></p><br/>
+        <ul id="nav">
+            <li><a class="active" href="main.html">Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">TV &amp; Movies</a>
+                <div class="dropdown-content">
+                    <a href="#">TV Shows</a>
+                    <a href="#">Movies</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Food &amp; Drinks</a>
+                <div class="dropdown-content">
+                    <a href="#">Food</a>
+                    <a href="#">Drinks</a>
+                    <a href="#">Quick Recipes</a>
+                    <a href="#">Health</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Video &amp; Gaming</a>
+                <div class="dropdown-content">
+                    <a href="#">Viral Videos</a>
+                    <a href="#">Gaming</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Books</a>
+                <div class="dropdown-content">
+                    <a href="#">Best Sellers</a>
+                    <a href="#">Top</a>
+                </div>
+            </li>
+        </ul>
+        <div class="slider">
+            <p align="center">
+                <a href="How a Depressing Restaurant Became My Valentine's Day Tradition.html">
+                    <img id="slider" src="images/cocktail.jpg"/>
+                </a>
+            </p>
+            <p align="center">
+                <button id="button1" style="background: linear-gradient(to bottom right, red, black)"
+                        class="round_button" onclick="changeButton1()"></button>&nbsp;&nbsp;
+                <button id="button2" class="round_button" onclick="changeButton2()"></button>&nbsp;&nbsp;
+                <button id="button3" class="round_button" onclick="changeButton3()"></button>
+            </p><br/>
+            <a href="How a Depressing Restaurant Became My Valentine's Day Tradition.html">
+                How a Depressing Restaurant Became My Valentine's Day Tradition
+            </a><br/><br/>
+            <span class="slider_author"><p align="right"><i>by Sadie Stein &bull; Februuary 9, 2016</i></p></span>
+        </div>
+    </div>
+    <div id="navigator">
+        <form name="loginForm" onsubmit="return validateLoginForm();" th:action="@{/}">
+            <span class="signin_text">Email:</span><br/>
+            <input type="text" name="email"/><br/>
+            <span class="signin_text">Password:</span><br/>
+            <input type="password" name="password"/><br/>
+            <input type="submit" value="Sign in"/><br/>
+        </form><br/>
+        <a class="signup_text" href="#register">Don't have an account? Sign up!</a><br/>
+        <p id="message"></p>
+        <div id="register" class="overlay">
+            <div class="popup">
+                <h2 align="center">Sign up</h2><br/>
+                <a class="close" href="#">&times;</a>
+                <div class="content" align="center">
+                    <form name="registerForm" onsubmit="return validateRegisterForm();">
+                        <span class="signin_text">Email:</span><br/>
+                        <input type="text" name="email"/><br/>
+                        <span class="signin_text">Password:</span><br/>
+                        <input type="password" name="password"/><br/>
+                        <span class="signin_text">Re-enter your password:</span><br/>
+                        <input type="password" name="reentered"/><br/><br/>
+                        <input type="submit" value="Sign up"/>
+                    </form><br/>
+                    <p id="error"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <h2><span class="spaced_text">This might be interesting!</span></h2><br/><br/>
+        <div th:each="article : ${articles}" class="inside_content">
+            <h4 th:text="${article.title}"/><br/>
+            <p th:utext="${article.articleExtract}" th:remove="tag"/><br/><br/>
+            <div align="right">
+                <a class="read_full" th:href="@{'/article/' + ${article.shortTitledId}}">
+                    Read full article
+                </a>
+            </div>
+            <p class="author_date_categories">
+                Author: <span th:text="${article.authorName}"/><br/>
+                Date: <span th:text="${article.publicationDate}"/><br/>
+                Category: <span th:text="${article.categoryName}"/><br/>
+            </p>
+        </div>
+    </div>
+    <div id="footer">Sergey Kim, CSSE-135R</div>
+</div>
+</body>
+</html>
