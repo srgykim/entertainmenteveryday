@@ -2,6 +2,10 @@ package com.srgykim.entertainmenteveryday.data;
 
 import java.sql.*;
 
+/**
+ * SingletonConnection class ensures that there is only one
+ * object to establish the connection with the database
+ */
 public class SingletonConnection {
 
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
