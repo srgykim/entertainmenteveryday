@@ -34,7 +34,8 @@ public class AuthorController {
 
     @RequestMapping(value="/author", method= RequestMethod.GET)
     public String authorPage(Model model, Principal principal) {
-        
+
+        // principal.getName() returns the author_id. see author-login.html
         Author author = authorDao.getAuthorById(principal.getName());
         model.addAttribute("author", author);
         model.addAttribute("article", new Article());
@@ -50,10 +51,5 @@ public class AuthorController {
         articleDao.publishArticle(article);
         model.addAttribute("article", article);
         return "just-published";
-    }
-
-    @RequestMapping("/403")
-    public String accessDenied() {
-        return "access-denied";
     }
 }

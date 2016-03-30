@@ -8,6 +8,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class AppMvcConfig extends WebMvcConfigurerAdapter {
 
+    /**
+     * Database connection credentials method.
+     * Used only to restrict visiting the "/author" URI
+     *
+     * @return Driver Manager Data Source
+     */
     @Bean(name = "dataSource")
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();

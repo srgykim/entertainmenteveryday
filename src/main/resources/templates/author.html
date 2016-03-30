@@ -19,7 +19,7 @@
                 "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
                 "save table contextmenu directionality emoticons template paste textcolor"
             ],
-            content_css: "css/content.css",
+            content_css: "/tinymce/content.css",
             toolbar: "insertfile undo redo | " +
             "styleselect | sizeselect | fontsizeselect | bold italic | alignleft aligncenter alignright alignjustify | " +
             "bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
@@ -45,7 +45,7 @@
     <div id="admincontent">
         <br/><br/><h1 align="center">Add New Article</h1><br/><br/>
         <div align="right">
-            <b>Author ID: </b><span th:text="${author.authorId}" style="color:green;"/><br/><br/>
+            <b>Author ID: </b><span th:object="${author}" th:text="${author.authorId}" style="color:green;"/><br/><br/>
             <form th:action="@{/logout}" method="post">
                 <span th:text="${author.firstName}+' '+${author.middleName}+' '+${author.lastName}"/>
                 <input type="submit" value="Sign out"/>

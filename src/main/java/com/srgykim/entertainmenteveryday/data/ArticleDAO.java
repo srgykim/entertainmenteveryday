@@ -10,10 +10,10 @@ import java.sql.*;
 public class ArticleDAO {
 
     private static final String GET_ALL_ARTICLES =
-        "SELECT article_id, title, short_titled_id, publication_date, " +
-        "article_content, article_extract, category_id, category_name, author_id, " +
-        "CONCAT(first_name, ' ', last_name) AS author_full_name " +
-        "FROM ARTICLES NATURAL JOIN CATEGORIES NATURAL JOIN AUTHORS";
+            "SELECT article_id, title, short_titled_id, publication_date, " +
+            "article_content, article_extract, category_id, category_name, author_id, " +
+            "CONCAT(first_name, ' ', last_name) AS author_full_name " +
+            "FROM ARTICLES NATURAL JOIN CATEGORIES NATURAL JOIN AUTHORS";
 
     private static final String PUBLISH_ARTICLE =
             "INSERT INTO ARTICLES " +
@@ -38,11 +38,11 @@ public class ArticleDAO {
 
     public List<Article> getAllArticles() {
 
-        List<Article> articles = new ArrayList<Article>();
+        List<Article> articles = new ArrayList<>();
 
         try(
                 Statement statement = connection.createStatement();
-                ResultSet results = statement.executeQuery(GET_ALL_ARTICLES);
+                ResultSet results = statement.executeQuery(GET_ALL_ARTICLES)
         ) {
             while(results.next()) {
                 articles.add(new Article(
@@ -67,7 +67,7 @@ public class ArticleDAO {
     public void publishArticle(Article article) {
 
         try(
-                PreparedStatement statement = connection.prepareStatement(PUBLISH_ARTICLE);
+                PreparedStatement statement = connection.prepareStatement(PUBLISH_ARTICLE)
         ) {
             statement.setString(1, article.getTitle());
             statement.setString(2, article.getShortTitledId());
@@ -89,7 +89,7 @@ public class ArticleDAO {
 
         try(
                 Statement statement = connection.createStatement();
-                ResultSet results = statement.executeQuery(GET_LAST_ARTICLE_ID);
+                ResultSet results = statement.executeQuery(GET_LAST_ARTICLE_ID)
         ) {
             results.next();
             if (results.getInt("last_article_id") == 0) {
@@ -109,10 +109,10 @@ public class ArticleDAO {
         Article article = new Article();
 
         try(
-                PreparedStatement statement = connection.prepareStatement(GET_ARTICLE_BY_SHORT_TITLED_ID);
+                PreparedStatement statement = connection.prepareStatement(GET_ARTICLE_BY_SHORT_TITLED_ID)
         ) {
             statement.setString(1, shortTitledId);
-            try(ResultSet results = statement.executeQuery();) {
+            try(ResultSet results = statement.executeQuery()) {
                 results.next();
                 article.setAllFields(
                         results.getInt("article_id"),
