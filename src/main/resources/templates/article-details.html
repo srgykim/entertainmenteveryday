@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Entertainment Everyday | Main</title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" th:href="@{/layout.css}"/>
+    <title th:text="${article.title}"></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/layout.css}" />
     <script type="text/javascript" th:src="@{/script.js}"></script>
 </head>
 <body>
@@ -12,7 +12,7 @@
     <div id="header">
         <p><a th:href="@{/}" class="title">
             <span class="header_text">Entertainment Everyday</span>
-        </a></p><br/>
+        </a></p><br />
         <ul id="nav">
             <li><a class="active" href="main.html">Home</a></li>
             <li class="dropdown">
@@ -49,39 +49,39 @@
     </div>
     <div id="navigator">
         <form name="loginForm" onsubmit="return validateLoginForm();" th:action="@{/}">
-            <span class="signin_text">Email:</span><br/>
-            <input type="text" name="email"/><br/>
-            <span class="signin_text">Password:</span><br/>
-            <input type="password" name="password"/><br/>
-            <input type="submit" value="Sign in"/><br/>
-        </form><br/>
-        <a class="signup_text" href="#register">Don't have an account? Sign up!</a><br/>
+            <span class="signin_text">Email:</span><br />
+            <input type="text" name="email" /><br />
+            <span class="signin_text">Password:</span><br />
+            <input type="password" name="password" /><br />
+            <input type="submit" value="Sign in" /><br />
+        </form><br />
+        <a class="signup_text" href="#register">Don't have an account? Sign up!</a><br />
         <p id="message"></p>
         <div id="register" class="overlay">
             <div class="popup">
-                <h2 align="center">Sign up</h2><br/>
+                <h2 align="center">Sign up</h2><br />
                 <a class="close" href="#">&times;</a>
                 <div class="content" align="center">
                     <form name="registerForm" onsubmit="return validateRegisterForm();">
-                        <span class="signin_text">Email:</span><br/>
-                        <input type="text" name="email"/><br/>
-                        <span class="signin_text">Password:</span><br/>
-                        <input type="password" name="password"/><br/>
-                        <span class="signin_text">Re-enter your password:</span><br/>
-                        <input type="password" name="reentered"/><br/><br/>
-                        <input type="submit" value="Sign up"/>
-                    </form><br/>
+                        <span class="signin_text">Email:</span><br />
+                        <input type="text" name="email" /><br />
+                        <span class="signin_text">Password:</span><br />
+                        <input type="password" name="password" /><br />
+                        <span class="signin_text">Re-enter your password:</span><br />
+                        <input type="password" name="reentered" /><br /><br />
+                        <input type="submit" value="Sign up" />
+                    </form><br />
                     <p id="error"></p>
                 </div>
             </div>
         </div>
     </div>
     <div id="content">
-        <h3><span class="spaced_header"><span th:text="${article.title}"/></span></h3>
+        <h3><span class="spaced_header"><span th:text="${article.title}" /></span></h3>
         <span class="author_date">
-            <span th:text="${article.authorName}"/> &bull; <span th:text="${article.publicationDate}"/>
-        </span><br/><br/>
-        <span th:utext="${article.articleContent}"/>
+            <span th:text="${article.authorName}" /> &bull; <span th:text="${article.publicationDate}" />
+        </span><br /><br />
+        <span th:utext="${article.articleContent}" />
     </div>
     <div id="footer">Sergey Kim, CSSE-135R</div>
 </div>

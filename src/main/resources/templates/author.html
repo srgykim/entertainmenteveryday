@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Entertainment Everyday | Admin</title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" th:href="@{/layout.css}"/>
+    <title>Entertainment Everyday | Author</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/layout.css}" />
     <script type="text/javascript" th:src="@{/script.js}"></script>
     <script th:src="@{/tinymce/tinymce.min.js}"></script>
     <script>
@@ -40,23 +40,23 @@
     <div id="header">
         <p><a th:href="@{/}" class="title">
             <span class="header_text">Entertainment Everyday</span>
-        </a></p><br/>
+        </a></p><br />
     </div>
     <div id="admincontent">
-        <br/><br/><h1 align="center">Add New Article</h1><br/><br/>
+        <br /><br /><h1 align="center">Add New Article</h1><br /><br />
         <div align="right">
-            <b>Author ID: </b><span th:object="${author}" th:text="${author.authorId}" style="color:green;"/><br/><br/>
+            <b>Author ID: </b><span th:object="${author}" th:text="${author.authorId}" style="color:green;" /><br /><br />
             <form th:action="@{/logout}" method="post">
-                <span th:text="${author.firstName}+' '+${author.middleName}+' '+${author.lastName}"/>
-                <input type="submit" value="Sign out"/>
+                <span th:text="${author.firstName}+' '+${author.middleName}+' '+${author.lastName}" />
+                <input type="submit" value="Sign out" />
             </form>
-        </div><br/><br/>
+        </div><br /><br />
         <form name="publicationForm" th:action="@{/author}" id="addarticle"
               onsubmit="return validatePublicationForm();" th:object="${article}" method="post">
-            Publication date:<br/>
-            <input type="date" id="date" style="width:250px;height:30px;font-size:12pt" th:field="*{publicationDate}"/><br/>
-            <p id="nullDate"></p><br/>
-            Category:<br/>
+            Publication date:<br />
+            <input type="date" id="date" style="width:250px;height:30px;font-size:12pt" th:field="*{publicationDate}" /><br />
+            <p id="nullDate"></p><br />
+            Category:<br />
             <select name="category" th:field="*{categoryId}" style="width:250px;height:50px;font-size:12pt;">
                 <option value="2">TV &amp; Movies: TV Shows</option>
                 <option value="3">TV &amp; Movies: Movies</option>
@@ -68,22 +68,22 @@
                 <option value="11">Video &amp; Gaming: Gaming</option>
                 <option value="13">Books: Best Sellers</option>
                 <option value="14">Books: Top</option>
-            </select><br/><br/>
-            Title:<br/>
-            <input type="text" name="title" style="width:100%;font-size:12pt;" th:field="*{title}"/><br/>
-            <p id="nullTitle"></p><br/>
-            Short title:<br/>
-            <input type="text" name="shortTitledId" style="width:100%;font-size:12pt;" th:field="*{shortTitledId}"/><br/>
-            <p id="nullShortTitle"></p><br/>
-            Extract:<br/>
+            </select><br /><br />
+            Title:<br />
+            <input type="text" name="title" style="width:100%;font-size:12pt;" th:field="*{title}" /><br />
+            <p id="nullTitle"></p><br />
+            Short title:<br />
+            <input type="text" name="shortTitledId" style="width:100%;font-size:12pt;" th:field="*{shortTitledId}" /><br />
+            <p id="nullShortTitle"></p><br />
+            Extract:<br />
             <textarea name="articleExtract" id="extract" maxlength="512" th:field="*{articleExtract}"
                       style="width:100%;height:100px;resize:none;font-size:12pt;"></textarea>
-            <p id="nullExtract"></p><br/>
-            Content:<br />
-            <textarea id="content" form="addarticle" name="articleContent" th:field="*{articleContent}"></textarea><br/>
-            <p id="nullContent"></p><br/>
+            <p id="nullExtract"></p><br />
+            Content:<br  />
+            <textarea id="content" form="addarticle" name="articleContent" th:field="*{articleContent}"></textarea><br />
+            <p id="nullContent"></p><br />
             <div align="center">
-                <input type="submit" value="PUBLISH" style="width:200px;height:40px;font-size:12pt;font-weight:bold;"/>
+                <input type="submit" value="PUBLISH" style="width:200px;height:40px;font-size:12pt;font-weight:bold;" />
             </div>
         </form><br /><br />
     </div>

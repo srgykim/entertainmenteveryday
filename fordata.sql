@@ -2,6 +2,7 @@
 # DROP TABLE AUTHORS;
 # DROP TABLE CATEGORIES;
 
+
 CREATE TABLE CATEGORIES (
   category_id INT PRIMARY KEY,
   parent_category_id INT,
@@ -33,9 +34,7 @@ CREATE TABLE ARTICLES (
   FOREIGN KEY (author_id) REFERENCES AUTHORS (author_id)
 );
 
-
-INSERT INTO articles VALUES(1, 'title', 'short title', '2016-03-22', 'content', 'extract', 3, 'johnsmith');
-
+# Default categories
 INSERT INTO CATEGORIES VALUES(1, null, 'TV & Movies', 'Description');
 INSERT INTO CATEGORIES VALUES(2, 1, 'TV Shows', 'Description');
 INSERT INTO CATEGORIES VALUES(3, 1, 'Movies', 'Description');
@@ -51,9 +50,11 @@ INSERT INTO CATEGORIES VALUES(12, null, 'Books', 'Description');
 INSERT INTO CATEGORIES VALUES(13, 12, 'Best Sellers', 'Description');
 INSERT INTO CATEGORIES VALUES(14, 12, 'Top', 'Description');
 
-INSERT INTO AUTHORS VALUES('johnsmith', 'secret', 'John', '', 'Smith', DEFAULT, DEFAULT);
-INSERT INTO AUTHORS VALUES('jackgreen', 'secret', 'Jack', '', 'Green', 'ROLE_USER', DEFAULT);
+# Default author
+INSERT INTO AUTHORS VALUES('srgykim', 'secret', 'Sergey', '', 'Kim', DEFAULT, DEFAULT);
 
+
+# Queries for further usage
 SELECT * FROM AUTHORS;
 
 SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM AUTHORS;
@@ -66,6 +67,3 @@ SELECT PARENT.category_name, SUB.category_name
 FROM CATEGORIES PARENT
   JOIN CATEGORIES SUB
     ON PARENT.category_id = SUB.parent_category_id;
-
-DELETE FROM ARTICLES;
-DELETE FROM AUTHORS;

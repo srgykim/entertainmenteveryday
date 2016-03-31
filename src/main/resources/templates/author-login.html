@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Entertainment Everyday | Main</title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" th:href="@{/layout.css}"/>
+    <title>Entertainment Everyday | Author Login</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/layout.css}" />
     <script th:src="@{/script.js}"></script>
 </head>
 <body>
@@ -13,16 +13,16 @@
         <div align="center">
             <p><a th:href="@{/}" class="title">
                 <span class="header_text">Entertainment Everyday</span>
-            </a></p><br/>
-            <h3>Enter Your Credentials</h3><br/>
+            </a></p><br />
+            <h3>Enter Your Credentials</h3><br />
             <form onsubmit="return validateAuthorLoginForm()"
                   th:action="@{/author/login}" name="authorLoginForm" method="post">
-                <span class="signin_text">Login:</span><br/>
-                <input type="text" name="author_id" style="width:250px;"/><br/>
-                <span class="signin_text">Password:</span><br/>
-                <input type="password" name="password" style="width:250px;"/><br/>
-                <input type="submit" value="Sign in"/><br/>
-            </form><br/>
+                <span class="signin_text">Login:</span><br />
+                <input type="text" name="author_id" style="width:250px;" /><br />
+                <span class="signin_text">Password:</span><br />
+                <input type="password" name="password" style="width:250px;" /><br />
+                <input type="submit" value="Sign in" /><br />
+            </form><br />
             <div th:if="${param.error}">
                 <span class="error_text" id="errmsg">Invalid login and/or password.</span>
             </div>
