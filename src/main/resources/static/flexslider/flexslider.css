@@ -73,6 +73,8 @@ html[xmlns] .flexslider .slides {
  * DEFAULT THEME
  * ====================================================================================================================*/
 .flexslider {
+    width: 600px;
+    height: 380px;
     margin: 0 0 60px;
     background: #ffffff;
     border: 4px solid #ffffff;
@@ -90,7 +92,8 @@ html[xmlns] .flexslider .slides {
     zoom: 1;
 }
 .flexslider .slides img {
-    height: auto;
+    width: 600px;
+    height: 300px;
     -moz-user-select: none;
 }
 .flex-viewport {
@@ -271,5 +274,17 @@ html[xmlns] .flexslider .slides {
     .flex-direction-nav .flex-next {
         opacity: 1;
         right: 10px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .flexslider .slides img {
+        width: 70%;
+        height: 70%;
+    }
+
+    .flexslider {
+        width: 73%;
+        height: 73%;
     }
 }

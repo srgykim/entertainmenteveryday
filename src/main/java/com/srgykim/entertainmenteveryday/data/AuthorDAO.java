@@ -3,7 +3,10 @@ package com.srgykim.entertainmenteveryday.data;
 import com.srgykim.entertainmenteveryday.model.Author;
 import org.springframework.stereotype.Component;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @Component
 public class AuthorDAO {
@@ -21,10 +24,10 @@ public class AuthorDAO {
         Author author = new Author();
 
         try(
-                PreparedStatement statement = connection.prepareStatement(GET_AUTHOR_BY_ID);
+                PreparedStatement statement = connection.prepareStatement(GET_AUTHOR_BY_ID)
         ) {
             statement.setString(1, possible);
-            try(ResultSet results = statement.executeQuery();) {
+            try(ResultSet results = statement.executeQuery()) {
                 if (results.next()) {
                     author.setAllFields(
                             results.getString("author_id"),

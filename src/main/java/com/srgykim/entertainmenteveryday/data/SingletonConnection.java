@@ -1,6 +1,7 @@
 package com.srgykim.entertainmenteveryday.data;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 /**
  * SingletonConnection class ensures that there is only one

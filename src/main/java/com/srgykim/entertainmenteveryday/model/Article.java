@@ -3,6 +3,7 @@ package com.srgykim.entertainmenteveryday.model;
 public class Article {
 
     private int articleId;
+    private String mainImageUrl;
     private String title;
     private String shortTitledId;
     private String publicationDate;
@@ -15,12 +16,14 @@ public class Article {
 
     public Article() {}
 
-    public Article(int articleId, String title, String shortTitledId,
+    public Article(int articleId, String mainImageUrl,
+                   String title, String shortTitledId,
                    String publicationDate, String articleContent,
                    String articleExtract, int categoryId,
                    String categoryName, String authorId, String authorName) {
 
         this.articleId = articleId;
+        this.mainImageUrl = mainImageUrl;
         this.title = title;
         this.shortTitledId = shortTitledId;
         this.publicationDate = publicationDate;
@@ -32,12 +35,14 @@ public class Article {
         this.authorName = authorName;
     }
 
-    public void setAllFields(int articleId, String title, String shortTitledId,
+    public void setAllFields(int articleId, String mainImageUrl,
+                             String title, String shortTitledId,
                              String publicationDate, String articleContent,
                              String articleExtract, int categoryId,
                              String categoryName, String authorId, String authorName) {
 
         this.articleId = articleId;
+        this.mainImageUrl = mainImageUrl;
         this.title = title;
         this.shortTitledId = shortTitledId;
         this.publicationDate = publicationDate;
@@ -55,6 +60,14 @@ public class Article {
 
     public void setArticleId(int articleId) {
         this.articleId = articleId;
+    }
+
+    public String getMainImageUrl() {
+        return mainImageUrl;
+    }
+
+    public void setMainImageUrl(String mainImageUrl) {
+        this.mainImageUrl = mainImageUrl;
     }
 
     public String getTitle() {

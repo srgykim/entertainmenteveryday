@@ -1,15 +1,15 @@
 package com.srgykim.entertainmenteveryday.service;
 
+import com.srgykim.entertainmenteveryday.data.ArticleDAO;
 import com.srgykim.entertainmenteveryday.model.Article;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.srgykim.entertainmenteveryday.data.ArticleDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Component
+@Service
 public class ArticleService {
 
     @Autowired

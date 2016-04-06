@@ -77,11 +77,12 @@
         </div>
     </div>
     <div id="content">
-        <h3><span class="spaced_header"><span th:text="${article.title}" /></span></h3>
+        <h3><span class="spaced_header"><span th:text="${article.title}" ></span></span></h3>
         <span class="author_date">
-            <span th:text="${article.authorName}" /> &bull; <span th:text="${article.publicationDate}" />
+            <span th:text="${article.authorName}"></span> &bull; <span th:text="${article.publicationDate}"></span>
         </span><br /><br />
-        <span th:utext="${article.articleContent}" />
+        <div align="center"><img th:src="${article.mainImageUrl}" alt="Main image" /></div><br /><br />
+        <span th:utext="${article.articleContent}"></span>
     </div>
     <div id="footer">Sergey Kim, CSSE-135R</div>
 </div>

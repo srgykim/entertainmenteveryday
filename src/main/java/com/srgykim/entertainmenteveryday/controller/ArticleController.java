@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.*;
+import java.util.List;
 
 @Controller
 public class ArticleController {
@@ -25,12 +25,18 @@ public class ArticleController {
     public String homePage(Model model) {
 
         List<Article> articles = articleDao.getAllArticles();
+        List<Article> sliderArticles = articleDao.getAllSliderArticles();
 
         for (Article article : articles) {
             article.setPublicationDate(articleService.formatArticleDate(article));
         }
 
+        for (Article article : sliderArticles) {
+            article.setPublicationDate(articleService.formatArticleDate(article));
+        }
+
         model.addAttribute("articles", articles);
+        model.addAttribute("sliderArticles", sliderArticles);
         return "home";
     }
 

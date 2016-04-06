@@ -14,6 +14,19 @@
             $('.flexslider').flexslider();
         });
     </script>
+    <style type="text/css">
+        .flex-caption {
+            width: 96%;
+            padding: 2%;
+            left: 0;
+            bottom: 0;
+            background: rgba(0,0,0,.5);
+            color: #fff;
+            text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+            font-size: 14px;
+            line-height: 18px;
+        }
+    </style>
 </head>
 <body>
 <div id="container">
@@ -55,16 +68,18 @@
             </li>
         </ul>
         <div class="slider">
-            <div class="flexslider">
+            <div align="center"><div class="flexslider">
                 <ul class="slides">
-                    <li>
-                        <img src="http://i.playground.ru/i/10/71/71/00/blog/content/wn86ocfr.jpg"  />
-                    </li>
-                    <li>
-                        <img src="https://d3nevzfk7ii3be.cloudfront.net/igi/KRLMkuaBjm5mKDDP"  />
+                    <li th:each="sliderArticle : ${sliderArticles}">
+                        <a th:href="@{'/article/' + ${sliderArticle.shortTitledId}}">
+                            <img th:src="${sliderArticle.mainImageUrl}" alt="Slider image" />
+                        </a>
+                        <a th:href="@{'/article/' + ${sliderArticle.shortTitledId}}">
+                            <p class="flex-caption" th:text="${sliderArticle.title}"></p>
+                        </a>
                     </li>
                 </ul>
-            </div>
+            </div></div>
         </div>
     </div>
     <div id="navigator">
@@ -73,7 +88,7 @@
             <input type="text" name="email" /><br />
             <span class="signin_text">Password:</span><br />
             <input type="password" name="password" /><br />
-            <input type="submit" value="Sign in" /><br />
+            <input type="submit" value="SIGN IN" /><br />
         </form><br />
         <a class="signup_text" href="#register">Don't have an account? Sign up!</a><br />
         <p id="message"></p>
@@ -89,7 +104,7 @@
                         <input type="password" name="password" /><br />
                         <span class="signin_text">Re-enter your password:</span><br />
                         <input type="password" name="reentered" /><br /><br />
-                        <input type="submit" value="Sign up" />
+                        <input type="submit" value="SIGN UP" />
                     </form><br />
                     <p id="error"></p>
                 </div>
@@ -99,8 +114,8 @@
     <div id="content">
         <h2><span class="spaced_text">This might be interesting!</span></h2><br /><br />
         <div th:each="article : ${articles}" class="inside_content">
-            <h4 th:text="${article.title}" /><br />
-            <p th:utext="${article.articleExtract}" th:remove="tag" /><br /><br />
+            <h4 th:text="${article.title}"></h4><br />
+            <p th:utext="${article.articleExtract}" th:remove="tag"></p><br /><br />
             <div align="right">
                 <a class="read_full" th:href="@{'/article/' + ${article.shortTitledId}}">
                     Read full article

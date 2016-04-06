@@ -1,7 +1,5 @@
 package com.srgykim.entertainmenteveryday.config;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,13 +8,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 
+import javax.sql.DataSource;
+
 @Configuration
 @EnableWebMvcSecurity
 @ComponentScan({ "com.srgykim.entertainmenteveryday.*" })
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    DataSource dataSource;  // see credentials from AppMvcConfig class
+    private DataSource dataSource;  // see credentials from AppMvcConfig class
 
     /**
      * This method authenticates anyone who tries to visit "/author" URI.

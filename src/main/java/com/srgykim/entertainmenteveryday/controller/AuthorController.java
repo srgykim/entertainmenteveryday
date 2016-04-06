@@ -24,7 +24,7 @@ public class AuthorController {
     private AuthorDAO authorDao;
 
     @Autowired
-    ArticleService articleService;
+    private ArticleService articleService;
 
     @RequestMapping("/author/login")
     public String authorLogin() {
@@ -32,17 +32,18 @@ public class AuthorController {
         return "author-login";
     }
 
-    @RequestMapping(value="/author", method= RequestMethod.GET)
+    @RequestMapping(value="/author", method=RequestMethod.GET)
     public String authorPage(Model model, Principal principal) {
 
-        // principal.getName() returns the author_id. see author-login.html
+        // method principal.getName() returns the author_id. see author-login.html
         Author author = authorDao.getAuthorById(principal.getName());
         model.addAttribute("author", author);
         model.addAttribute("article", new Article());
+        model.addAttribute("sliderArticle", new Article());
         return "author";
     }
 
-    @RequestMapping(value="/author", method= RequestMethod.POST)
+    @RequestMapping(value="/author", params="articlePublication", method=RequestMethod.POST)
     public String articleSubmit(@ModelAttribute Article article, Model model,
                                 Principal principal) {
 
@@ -50,6 +51,13 @@ public class AuthorController {
         article.setAuthorId(principal.getName());
         articleDao.publishArticle(article);
         model.addAttribute("article", article);
+        return "just-published";
+    }
+
+    @RequestMapping(value="/author", params="sliderArticlePublication", method=RequestMethod.POST)
+    public String sliderArticleSubmit(@ModelAttribute Article sliderArticle, Model model) {
+
+        articleDao.publishSliderArticle(sliderArticle);
         return "just-published";
     }
 }
