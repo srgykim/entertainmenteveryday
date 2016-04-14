@@ -8,6 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class AuthorDAO acts as an interface to persistence layer to do CRUD operations with authors.
+ */
 @Component
 public class AuthorDAO {
 

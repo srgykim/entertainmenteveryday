@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
 
+/**
+ * Class AuthorController handles requests related to articles and author.
+ */
 @Controller
 public class AuthorController {
 

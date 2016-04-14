@@ -135,8 +135,13 @@
       <index id="38" parent="5" name="short_titled_id">
         <columns>short_titled_id</columns>
         <desc-columns></desc-columns>
+        <unique>1</unique>
       </index>
-      <foreign-key id="39" parent="5" name="slider_articles_ibfk_1">
+      <key id="39" parent="5" name="short_titled_id">
+        <columns>short_titled_id</columns>
+        <underlying-index>short_titled_id</underlying-index>
+      </key>
+      <foreign-key id="40" parent="5" name="slider_articles_ibfk_1">
         <columns>short_titled_id</columns>
         <ref-key>~.ARTICLES.short_titled_id</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>

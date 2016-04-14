@@ -27,6 +27,11 @@ public class SingletonConnection {
         }
     }
 
+    /**
+     * This method invokes the constructor to initialize connection object.
+     *
+     * @return instance - SingletonConnection class instance
+     */
     private static SingletonConnection getInstance() {
 
         if (instance == null) {
@@ -36,6 +41,12 @@ public class SingletonConnection {
         return instance;
     }
 
+    /**
+     * This method returns connection object. New instance is created
+     * only if it doesn't exist.
+     *
+     * @return connection - standard JDBC connection object
+     */
     public static Connection getConnection() {
 
         if (connection == null) {

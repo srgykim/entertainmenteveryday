@@ -7,6 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class ArticleDAO acts as an interface to persistence layer to do CRUD operations with articles.
+ */
 @Component
 public class ArticleDAO {
 
@@ -187,5 +190,4 @@ public class ArticleDAO {
 
         return articles;
     }
-
 }

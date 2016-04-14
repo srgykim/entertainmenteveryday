@@ -1,6 +1,7 @@
-# DROP TABLE ARTICLES;
-# DROP TABLE AUTHORS;
-# DROP TABLE CATEGORIES;
+DROP TABLE SLIDER_ARTICLES;
+DROP TABLE ARTICLES;
+DROP TABLE AUTHORS;
+DROP TABLE CATEGORIES;
 
 
 CREATE TABLE CATEGORIES (
@@ -23,6 +24,7 @@ CREATE TABLE AUTHORS (
 
 CREATE TABLE ARTICLES (
   article_id INT PRIMARY KEY AUTO_INCREMENT,
+  main_image_url VARCHAR(255),
   title VARCHAR(255),
   short_titled_id VARCHAR(255),
   publication_date DATE,
@@ -31,8 +33,15 @@ CREATE TABLE ARTICLES (
   category_id int,
   author_id VARCHAR(255),
   FOREIGN KEY (category_id) REFERENCES CATEGORIES (category_id),
-  FOREIGN KEY (author_id) REFERENCES AUTHORS (author_id)
+  FOREIGN KEY (author_id) REFERENCES AUTHORS (author_id),
+  UNIQUE(short_titled_id)
 );
+
+CREATE TABLE SLIDER_ARTICLES (
+  short_titled_id VARCHAR(255) UNIQUE,
+  FOREIGN KEY (short_titled_id) REFERENCES ARTICLES (short_titled_id)
+);
+
 
 # Default categories
 INSERT INTO CATEGORIES VALUES(1, null, 'TV & Movies', 'Description');
@@ -55,7 +64,11 @@ INSERT INTO AUTHORS VALUES('srgykim', 'secret', 'Sergey', '', 'Kim', DEFAULT, DE
 
 
 # Queries for further usage
+SELECT * FROM ARTICLES;
+
 SELECT * FROM AUTHORS;
+
+SELECT * FROM SLIDER_ARTICLES;
 
 SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM AUTHORS;
 
@@ -67,3 +80,6 @@ SELECT PARENT.category_name, SUB.category_name
 FROM CATEGORIES PARENT
   JOIN CATEGORIES SUB
     ON PARENT.category_id = SUB.parent_category_id;
+
+DELETE FROM SLIDER_ARTICLES;
+DELETE FROM ARTICLES;

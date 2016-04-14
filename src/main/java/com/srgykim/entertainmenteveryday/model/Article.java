@@ -1,5 +1,8 @@
 package com.srgykim.entertainmenteveryday.model;
 
+/**
+ * Class Article represents an article.
+ */
 public class Article {
 
     private int articleId;

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+/**
+ * Class ArticleController handles requests related to articles and readers.
+ */
 @Controller
 public class ArticleController {
 

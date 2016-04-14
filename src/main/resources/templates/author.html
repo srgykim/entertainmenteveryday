@@ -45,7 +45,7 @@
     <div id="admincontent">
         <br /><br /><h1 align="center">Add New Article</h1><br /><br />
         <div align="right">
-            <b>Author ID: </b><span th:object="${author}" th:text="${author.authorId}" style="color:green;"></span><br /><br />
+            <b>Author ID: </b><span th:text="${author.authorId}" style="color:green;"></span><br /><br />
             <form th:action="@{/logout}" method="post">
                 <span th:text="${author.firstName}+' '+${author.middleName}+' '+${author.lastName}"></span>
                 <input type="submit" value="SIGN OUT" />

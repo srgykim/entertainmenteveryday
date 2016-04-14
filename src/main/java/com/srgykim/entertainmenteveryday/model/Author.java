@@ -1,5 +1,8 @@
 package com.srgykim.entertainmenteveryday.model;
 
+/**
+ * Class Author represents an author.
+ */
 public class Author {
     private String authorId;
     private String password;

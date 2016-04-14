@@ -22,8 +22,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
      * This method authenticates anyone who tries to visit "/author" URI.
      * See the notes from "fordata.sql" to clarify the SQL select statement.
      *
-     * @param auth
-     * @throws Exception
+     * @param auth - authentication object
+     * @throws Exception - exception object is thrown if authentication is not passed
      */
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
@@ -39,8 +39,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
      * This method requests an author to login in order
      * to visit author admin panel ("/author" URI) to add articles, etc.
      *
-     * @param http
-     * @throws Exception
+     * @param http - http object that can restrict access to some URIs
+     * @throws Exception - exception object is thrown if authentication is not passed
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
