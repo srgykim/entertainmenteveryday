@@ -2,89 +2,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:text="${article.title}"></title>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" th:href="@{/layout.css}" />
-    <script type="text/javascript" th:src="@{/script.js}"></script>
 </head>
 <body>
 <div id="container">
     <div id="header">
-        <p><a th:href="@{/}" class="title">
-            <span class="header_text">Entertainment Everyday</span>
-        </a></p><br />
-        <ul id="nav">
-            <li><a class="active" href="main.html">Home</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropbtn">TV &amp; Movies</a>
-                <div class="dropdown-content">
-                    <a href="#">TV Shows</a>
-                    <a href="#">Movies</a>
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Food &amp; Drinks</a>
-                <div class="dropdown-content">
-                    <a href="#">Food</a>
-                    <a href="#">Drinks</a>
-                    <a href="#">Quick Recipes</a>
-                    <a href="#">Health</a>
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Video &amp; Gaming</a>
-                <div class="dropdown-content">
-                    <a href="#">Viral Videos</a>
-                    <a href="#">Gaming</a>
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Books</a>
-                <div class="dropdown-content">
-                    <a href="#">Best Sellers</a>
-                    <a href="#">Top</a>
-                </div>
-            </li>
-        </ul>
+        <a th:href="@{/}" class="title">
+            <span class="header-text">Entertainment Everyday</span>
+        </a><br />
+
+        <div th:include="base :: menu"></div>
     </div>
-    <div id="navigator">
-        <form name="loginForm" onsubmit="return validateLoginForm();" th:action="@{/}">
-            <span class="signin_text">Email:</span><br />
-            <input type="text" name="email" /><br />
-            <span class="signin_text">Password:</span><br />
-            <input type="password" name="password" /><br />
-            <input type="submit" value="Sign in" /><br />
-        </form><br />
-        <a class="signup_text" href="#register">Don't have an account? Sign up!</a><br />
-        <p id="message"></p>
-        <div id="register" class="overlay">
-            <div class="popup">
-                <h2 align="center">Sign up</h2><br />
-                <a class="close" href="#">&times;</a>
-                <div class="content" align="center">
-                    <form name="registerForm" onsubmit="return validateRegisterForm();">
-                        <span class="signin_text">Email:</span><br />
-                        <input type="text" name="email" /><br />
-                        <span class="signin_text">Password:</span><br />
-                        <input type="password" name="password" /><br />
-                        <span class="signin_text">Re-enter your password:</span><br />
-                        <input type="password" name="reentered" /><br /><br />
-                        <input type="submit" value="Sign up" />
-                    </form><br />
-                    <p id="error"></p>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div id="content">
-        <h3><span class="spaced_header"><span th:text="${article.title}" ></span></span></h3>
-        <span class="author_date">
+        <h2 th:text="${article.title}"></h2>
+
+        <span class="author-date">
             <span th:text="${article.authorName}"></span> &bull; <span th:text="${article.publicationDate}"></span>
         </span><br /><br />
-        <div align="center"><img th:src="${article.mainImageUrl}" alt="Main image" /></div><br /><br />
+
+        <div align="center"><img th:src="${article.mainImageUrl}" alt="MAIN IMAGE" /></div><br /><br />
+
         <span th:utext="${article.articleContent}"></span>
     </div>
-    <div id="footer">Sergey Kim, CSSE-135R</div>
+
+    <div th:include="base :: footer"></div>
 </div>
 </body>
 </html>

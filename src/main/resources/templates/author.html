@@ -2,14 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Entertainment Everyday | Author</title>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" th:href="@{/layout.css}" />
-    <script type="text/javascript" th:src="@{/script.js}"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+
     <script th:src="@{/tinymce/tinymce.min.js}"></script>
+
+    <script type="text/javascript" th:src="@{/validationscripts/publication.js}"></script>
+
     <script>
         tinymce.init({
-            selector: "textarea#content",
+            selector: "textarea#articleContent",
             theme: "modern",
             width: "100%",
             height: 300,
@@ -31,34 +39,42 @@
                 {title: 'Example 2', inline: 'span', classes: 'example2'},
                 {title: 'Table styles'},
                 {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
-            ]
+            ],
+            onchange_callback: function(editor) {
+                tinyMCE.triggerSave();
+                $("#" + editor.id).valid();
+            }
         });
     </script>
 </head>
 <body>
 <div id="container">
     <div id="header">
-        <p><a th:href="@{/}" class="title">
-            <span class="header_text">Entertainment Everyday</span>
-        </a></p><br />
+        <a th:href="@{/}" class="title">
+            <span class="header-text">Entertainment Everyday</span>
+        </a><br />
     </div>
+
     <div id="admincontent">
         <br /><br /><h1 align="center">Add New Article</h1><br /><br />
+
         <div align="right">
             <b>Author ID: </b><span th:text="${author.authorId}" style="color:green;"></span><br /><br />
+
             <form th:action="@{/logout}" method="post">
-                <span th:text="${author.firstName}+' '+${author.middleName}+' '+${author.lastName}"></span>
+                <span th:text="${author.firstName} + ' ' + ${author.middleName} + ' ' + ${author.lastName}"></span>
                 <input type="submit" value="SIGN OUT" />
             </form>
         </div><br /><br />
-        <form name="publicationForm" th:action="@{/author}" id="addarticle"
-              onsubmit="return validatePublicationForm();" th:object="${article}" method="post">
-            <label for="date">Publication date:<br />
-                <input type="date" id="date" style="width:250px;height:30px;font-size:12pt" th:field="*{publicationDate}" /><br />
+
+        <form th:action="@{/author}" th:object="${article}" id="addarticle" method="post">
+            <label>
+                Publication date: <br />
+                <input type="date" th:field="*{publicationDate}" /><br /><br /><br />
             </label>
-            <p id="nullDate"></p><br />
-            <label for="category">Category:<br />
-                <select name="category" id="category" th:field="*{categoryId}" style="width:250px;height:50px;font-size:12pt;">
+
+            <label>Category:<br />
+                <select name="category" th:field="*{categoryId}">
                     <option value="2">TV &amp; Movies: TV Shows</option>
                     <option value="3">TV &amp; Movies: Movies</option>
                     <option value="5">Food &amp; Drinks: Food</option>
@@ -71,41 +87,46 @@
                     <option value="14">Books: Top</option>
                 </select><br /><br />
             </label>
-            <label for="url">Main image URL:<br />
-                <input type="text" name="url" id="url" style="width:100%;font-size:12pt;" th:field="*{mainImageUrl}" /><br />
+
+            <label>Main image URL:<br />
+                <input type="text" th:field="*{mainImageUrl}" /><br /><br /><br />
             </label>
-            <p id="nullUrl"></p><br />
-            <label for="title">Title:<br />
-                <input type="text" name="title" id="title" style="width:100%;font-size:12pt;" th:field="*{title}" /><br />
+
+            <label>Title:<br />
+                <input type="text" th:field="*{title}" /><br /><br /><br />
             </label>
-            <p id="nullTitle"></p><br />
-            <label for="shortTitledId">Short title:<br />
-                <input type="text" name="shortTitledId" id="shortTitledId" style="width:100%;font-size:12pt;" th:field="*{shortTitledId}" /><br />
+
+            <label>Short title:<br />
+                <input type="text" th:field="*{shortTitledId}" /><br /><br /><br />
             </label>
-            <p id="nullShortTitle"></p><br />
-            <label for="extract">Extract:<br />
-                <textarea name="articleExtract" id="extract" maxlength="512" th:field="*{articleExtract}"
-                          style="width:100%;height:100px;resize:none;font-size:12pt;"></textarea>
+
+            <label>Extract:<br />
+                <textarea maxlength="512" th:field="*{articleExtract}"></textarea><br /><br /><br />
             </label>
-            <p id="nullExtract"></p><br />
-            <textarea id="content" form="addarticle" name="articleContent" th:field="*{articleContent}"></textarea><br />
-            <p id="nullContent"></p><br />
+
+            <label>
+                <textarea th:field="*{articleContent}"></textarea><br /><br /><br />
+            </label>
+
             <div align="center">
-                <input type="submit" name="articlePublication" value="PUBLISH"
-                       style="width:200px;height:40px;font-size:12pt;" />
+                <input type="submit" name="articlePublication" value="PUBLISH" class="publication" /><br />
             </div>
-        </form><br /><br />
-        <hr /><br /><br />
-        <form name="sliderArticlePublicationForm" th:action="@{/author}" th:object="${sliderArticle}" method="post">
-            <label for="sliderArticleShortTitledId">Short titled id:<br />
-                <input type="text" name="sliderArticleShortTitledId" id="sliderArticleShortTitledId"
-                       style="width:100%;font-size:12pt;" th:field="*{shortTitledId}" />
+        </form>
+
+        <br/><br/><hr /><br /><br />
+
+        <form th:action="@{/author}" th:object="${sliderArticle}" id="sliderArticlePublicationForm" method="post">
+            <label>Short titled id:<br />
+                <input type="text" th:field="*{shortTitledId}" />
             </label><br /><br />
-            <div align="center"><input type="submit" name="sliderArticlePublication" value="ADD TO SLIDER"
-                                       style="width:200px;height:40px;font-size:12pt;" /></div>
-        </form><br /><br />
+
+            <div align="center">
+                <input type="submit" name="sliderArticlePublication" value="ADD TO SLIDER" class="publication" />
+            </div>
+        </form><br /><br /><br />
     </div>
-    <div id="footer">Sergey Kim, CSSE-135R</div>
+
+    <div th:include="base :: footer"></div>
 </div>
 </body>
 </html>

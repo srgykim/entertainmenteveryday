@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 /**
  * SingletonConnection class ensures that there is only one
- * object to establish the connection with the database
+ * object to establish the connection with the database.
  */
 public class SingletonConnection {
 

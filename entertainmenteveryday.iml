@@ -68,5 +68,7 @@
     <orderEntry type="library" name="Gradle: org.springframework:spring-core:4.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.tomcat:tomcat-juli:8.0.26" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-beans:4.1.7.RELEASE" level="project" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="jquery.validate" level="application" />
   </component>
 </module>

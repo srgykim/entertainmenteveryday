@@ -29,17 +29,16 @@ public class ArticleController {
 
         List<Article> articles = articleDao.getAllArticles();
         List<Article> sliderArticles = articleDao.getAllSliderArticles();
-
         for (Article article : articles) {
             article.setPublicationDate(articleService.formatArticleDate(article));
         }
-
         for (Article article : sliderArticles) {
             article.setPublicationDate(articleService.formatArticleDate(article));
         }
 
         model.addAttribute("articles", articles);
         model.addAttribute("sliderArticles", sliderArticles);
+
         return "home";
     }
 
@@ -47,14 +46,13 @@ public class ArticleController {
     public String getArticleDetails(@PathVariable String shortTitledId, Model model) {
 
         Article article = articleDao.getArticleByShortTitledId(shortTitledId);
-
         if (article == null) {
             throw new PageNotFoundException();
         }
-
         article.setPublicationDate(articleService.formatArticleDate(article));
 
         model.addAttribute("article", article);
+
         return "article-details";
     }
 }

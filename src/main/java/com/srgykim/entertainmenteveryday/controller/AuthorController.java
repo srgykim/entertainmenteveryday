@@ -40,9 +40,11 @@ public class AuthorController {
 
         // method principal.getName() returns the author_id. see author-login.html
         Author author = authorDao.getAuthorById(principal.getName());
+
         model.addAttribute("author", author);
         model.addAttribute("article", new Article());
         model.addAttribute("sliderArticle", new Article());
+
         return "author";
     }
 
@@ -52,8 +54,11 @@ public class AuthorController {
 
         article.setShortTitledId(articleService.formatShortTitledId(article));
         article.setAuthorId(principal.getName());
+
         articleDao.publishArticle(article);
+
         model.addAttribute("article", article);
+
         return "just-published";
     }
 
@@ -61,6 +66,7 @@ public class AuthorController {
     public String sliderArticleSubmit(@ModelAttribute Article sliderArticle, Model model) {
 
         articleDao.publishSliderArticle(sliderArticle);
+
         return "just-published";
     }
 }

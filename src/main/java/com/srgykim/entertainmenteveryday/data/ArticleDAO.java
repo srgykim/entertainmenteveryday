@@ -25,8 +25,12 @@ public class ArticleDAO {
             "article_content, article_extract, category_id, author_id) " +
             "VALUES (?,?,?,?,?,?,?,?)";
 
+    @SuppressWarnings("SqlResolve")
     private static final String GET_LAST_ARTICLE_ID =
-            "SELECT MAX(article_id) AS last_article_id FROM ARTICLES";
+            "SELECT auto_increment " +
+            "FROM  INFORMATION_SCHEMA.TABLES " +
+            "WHERE TABLE_SCHEMA = 'entertainmenteveryday' " +
+            "AND TABLE_NAME = 'ARTICLES'";
 
     private static final String GET_ARTICLE_BY_SHORT_TITLED_ID =
             "SELECT article_id, main_image_url, title, short_titled_id, publication_date, " +
@@ -99,24 +103,19 @@ public class ArticleDAO {
     }
 
     public int getLastArticleId() {
-
-        int lastArticleId = 1;
+        int last = -1;
 
         try(
                 Statement statement = connection.createStatement();
                 ResultSet results = statement.executeQuery(GET_LAST_ARTICLE_ID)
         ) {
             results.next();
-            if (results.getInt("last_article_id") == 0) {
-                return lastArticleId;
-            } else {
-                lastArticleId += results.getInt("last_article_id");
-            }
+            last = results.getInt("auto_increment");
         } catch(SQLException se) {
             se.printStackTrace();
         }
 
-        return lastArticleId;
+        return last;
     }
 
     public Article getArticleByShortTitledId(String shortTitledId) {

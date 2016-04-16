@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Template Title</title>
+</head>
+<body>
+<section th:fragment="menu">
+    <ul id="nav">
+        <li><a class="active" th:href="@{/}">Home</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropbtn">TV &amp; Movies</a>
+            <div class="dropdown-content">
+                <a href="#">TV Shows</a>
+                <a href="#">Movies</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropbtn">Food &amp; Drinks</a>
+            <div class="dropdown-content">
+                <a href="#">Food</a>
+                <a href="#">Drinks</a>
+                <a href="#">Quick Recipes</a>
+                <a href="#">Health</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropbtn">Video &amp; Gaming</a>
+            <div class="dropdown-content">
+                <a href="#">Viral Videos</a>
+                <a href="#">Gaming</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropbtn">Books</a>
+            <div class="dropdown-content">
+                <a href="#">Best Sellers</a>
+                <a href="#">Top</a>
+            </div>
+        </li>
+    </ul>
+</section>
+
+<section th:fragment="footer">
+    <div id="footer">Entertainment Everyday &bull; Sergey Kim</div>
+</section>
+</body>
+</html>

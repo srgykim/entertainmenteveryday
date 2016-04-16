@@ -2,18 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Entertainment Everyday | Home</title>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" th:href="@{flexslider/flexslider.css}" type="text/css" />
+
     <link rel="stylesheet" th:href="@{/layout.css}" />
-    <script type="text/javascript" th:src="@{/script.js}"></script>
+    <link rel="stylesheet" th:href="@{/flexslider/flexslider.css}" type="text/css" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
     <script th:src="@{/flexslider/jquery.flexslider.js}"></script>
-    <script type="text/javascript" charset="utf-8">
+
+    <script type="text/javascript">
         $(window).load(function() {
             $('.flexslider').flexslider();
         });
     </script>
+
     <style type="text/css">
         .flex-caption {
             width: 96%;
@@ -31,104 +36,51 @@
 <body>
 <div id="container">
     <div id="header">
-        <p><a th:href="@{/}" class="title">
-            <span class="header_text">Entertainment Everyday</span>
-        </a></p><br />
-        <ul id="nav">
-            <li><a class="active" href="main.html">Home</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropbtn">TV &amp; Movies</a>
-                <div class="dropdown-content">
-                    <a href="#">TV Shows</a>
-                    <a href="#">Movies</a>
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Food &amp; Drinks</a>
-                <div class="dropdown-content">
-                    <a href="#">Food</a>
-                    <a href="#">Drinks</a>
-                    <a href="#">Quick Recipes</a>
-                    <a href="#">Health</a>
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Video &amp; Gaming</a>
-                <div class="dropdown-content">
-                    <a href="#">Viral Videos</a>
-                    <a href="#">Gaming</a>
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Books</a>
-                <div class="dropdown-content">
-                    <a href="#">Best Sellers</a>
-                    <a href="#">Top</a>
-                </div>
-            </li>
-        </ul>
+        <a th:href="@{/}" class="title">
+            <span class="header-text">Entertainment Everyday</span>
+        </a><br />
+
+        <div th:include="base :: menu"></div>
+
         <div class="slider">
-            <div align="center"><div class="flexslider">
-                <ul class="slides">
-                    <li th:each="sliderArticle : ${sliderArticles}">
-                        <a th:href="@{'/article/' + ${sliderArticle.shortTitledId}}">
-                            <img th:src="${sliderArticle.mainImageUrl}" alt="Slider image" />
-                        </a>
-                        <a th:href="@{'/article/' + ${sliderArticle.shortTitledId}}">
-                            <p class="flex-caption" th:text="${sliderArticle.title}"></p>
-                        </a>
-                    </li>
-                </ul>
-            </div></div>
-        </div>
-    </div>
-    <div id="navigator">
-        <form name="loginForm" onsubmit="return validateLoginForm();" th:action="@{/}">
-            <span class="signin_text">Email:</span><br />
-            <input type="text" name="email" /><br />
-            <span class="signin_text">Password:</span><br />
-            <input type="password" name="password" /><br />
-            <input type="submit" value="SIGN IN" /><br />
-        </form><br />
-        <a class="signup_text" href="#register">Don't have an account? Sign up!</a><br />
-        <p id="message"></p>
-        <div id="register" class="overlay">
-            <div class="popup">
-                <h2 align="center">Sign up</h2><br />
-                <a class="close" href="#">&times;</a>
-                <div class="content" align="center">
-                    <form name="registerForm" onsubmit="return validateRegisterForm();">
-                        <span class="signin_text">Email:</span><br />
-                        <input type="text" name="email" /><br />
-                        <span class="signin_text">Password:</span><br />
-                        <input type="password" name="password" /><br />
-                        <span class="signin_text">Re-enter your password:</span><br />
-                        <input type="password" name="reentered" /><br /><br />
-                        <input type="submit" value="SIGN UP" />
-                    </form><br />
-                    <p id="error"></p>
+            <div align="center">
+                <div class="flexslider">
+                    <ul class="slides">
+                        <li th:each="article : ${sliderArticles}">
+                            <a th:href="@{'/article/' + ${article.shortTitledId}}">
+                                <img th:src="${article.mainImageUrl}" alt="SLIDER IMAGE" />
+                            </a>
+                            <a th:href="@{'/article/' + ${article.shortTitledId}}">
+                                <p th:text="${article.title}" class="flex-caption"></p>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+
     <div id="content">
-        <h2><span class="spaced_text">This might be interesting!</span></h2><br /><br />
-        <div th:each="article : ${articles}" class="inside_content">
+        <div th:each="article : ${articles}" class="inside-content">
             <h4 th:text="${article.title}"></h4><br />
-            <p th:utext="${article.articleExtract}" th:remove="tag"></p><br /><br />
+
+            <p th:text="${article.articleExtract}"></p><br /><br />
+
             <div align="right">
-                <a class="read_full" th:href="@{'/article/' + ${article.shortTitledId}}">
+                <a th:href="@{'/article/' + ${article.shortTitledId}}" class="read-full">
                     Read full article
                 </a>
             </div>
-            <p class="author_date_categories">
-                Author: <span th:text="${article.authorName}" /><br />
-                Date: <span th:text="${article.publicationDate}" /><br />
-                Category: <span th:text="${article.categoryName}" /><br />
+
+            <p class="author-date-categories">
+                Author: <span th:text="${article.authorName}"></span><br />
+                Date: <span th:text="${article.publicationDate}"></span><br />
+                Category: <span th:text="${article.categoryName}"></span><br />
             </p>
         </div>
     </div>
-    <div id="footer">Sergey Kim, CSSE-135R</div>
+
+    <div th:include="base :: footer"></div>
 </div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -57,7 +57,7 @@ body {
     color: #a8a800;
 }
 
-.slider_author {
+.slider-author {
     font-size: 9pt;
     color: white;
 }
@@ -91,11 +91,11 @@ body {
     color: #a8a800;
 }
 
-#navigator a.signup_text {
+#navigator a.signup-text {
     font-size: 9pt;
 }
 
-#navigator a.signup_text:hover {
+#navigator a.signup-text:hover {
     color: blue;
 }
 
@@ -117,7 +117,7 @@ body {
     margin-right: auto;
 }
 
-#content .inside_content {
+#content .inside-content {
     background: linear-gradient(to bottom right, white, #E5E4E2);
     border-radius: 5px;
     border: 2px solid black;
@@ -125,29 +125,59 @@ body {
     margin-bottom: 30px;
 }
 
-#content .inside_content p {
+#content .inside-content p {
     margin-top: 10px;
     text-align: justify;
 }
 
-#content .inside_content p.author_date_categories {
+#content .inside-content p.author-date-categories {
     color: gray;
     margin-top: 15px;
     font-size: 10pt;
 }
 
-#content .inside_content a.read_full {
+#content .inside-content a.read-full {
     color: blue;
     font-size: 12pt;
 }
 
-#content .inside_content a.read_full:hover {
+#content .inside-content a.read-full:hover {
     color: green;
 }
 
 #admincontent {
     margin-left: 10%;
     margin-right: 10%;
+}
+
+#admincontent input[type=text] {
+    width:100%;
+    font-size:12pt;
+}
+
+#admincontent input[type=date] {
+    width:250px;
+    height:30px;
+    font-size:12pt;
+}
+
+#admincontent input[type=submit].publication {
+    width:200px;
+    height:40px;
+    font-size:12pt;
+}
+
+#admincontent textarea {
+    width:100%;
+    height:100px;
+    resize:none;
+    font-size:12pt;
+}
+
+#admincontent select {
+    width:250px;
+    height:50px;
+    font-size:12pt;
 }
 
 ul#nav {
@@ -184,7 +214,7 @@ ul#nav li.dropdown {
     position: absolute;
     background: linear-gradient(to bottom right, gray, #9999FF);
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .dropdown-content a {
@@ -201,7 +231,7 @@ ul#nav li.dropdown {
     display: block;
 }
 
-.header_text {
+.header-text {
     background-color: red;
     display: block;
     width: 200px;
@@ -210,11 +240,11 @@ ul#nav li.dropdown {
     border: solid 2px white;
 }
 
-.spaced_text {
+.spaced-text {
     letter-spacing: 10px;
 }
 
-.author_date {
+.author-date {
     color: gray;
     font-size: 10pt;
 }
@@ -251,16 +281,16 @@ input[type=submit]:hover {
     background: #999;
 }
 
-.signin_text {
+.signin-text {
     font-size: 9pt;
 }
 
-.error_text {
+.error-text {
     font-size: 9pt;
     color: red;
 }
 
-.round_button {
+.round-button {
     border: 2px solid black;
     border-radius: 100%;
     height: 20px;
